@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Shoplix – Multipurpose eCommerce Website ",
   description: "Test application fpr education purpose",
-};
+};  
 
 export default function RootLayout({
   children,
