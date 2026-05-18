@@ -2,5 +2,6 @@
   "files.autoSave": "afterDelay",
   "cSpell.words": [
     "Shoplix"
-  ]
+  ],
+  "editor.guides.bracketPairs": "active"
 }
