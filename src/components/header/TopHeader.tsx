@@ -6,6 +6,7 @@ import SearchInput from './SearchInput'
 import Link from 'next/link'
 import { LiaUser } from 'react-icons/lia'
 import HeaderIcon from './HeaderIcon'
+import MobileNavigation from './MobileNavigation'
 
 
 const TopHeader = () => {
@@ -26,6 +27,7 @@ const TopHeader = () => {
         </Link>
         <HeaderIcon />
       </div>
+      <MobileNavigation />
     </Container>
     </div>
   )
