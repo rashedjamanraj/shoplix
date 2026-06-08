@@ -2,12 +2,12 @@
 
 
 
-const page = () => {
+const SinginPage = () => {
   return (
     <div>
-      login
+      Singin
     </div>
   )
 }
 
-export default page
+export default SinginPage

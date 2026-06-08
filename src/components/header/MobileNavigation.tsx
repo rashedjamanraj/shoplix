@@ -16,9 +16,9 @@ const MobileNavigation = () => {
     <>
       <div
         onClick={() => setIsOpen(true)}
-        className=" text-xl text-gray-500 md:hidden hover:text-sky-600 duration-200 cursor-pointer"
+        className=" text-2xl text-gray-500 md:hidden hover:text-sky-600 duration-200 cursor-pointer"
       >
-        <RiMenu3Fill />
+        <RiMenu3Fill  />
       </div>
         <Dialog
           open={isOpen}
@@ -47,7 +47,6 @@ const MobileNavigation = () => {
                     onClick={() => setIsOpen(false)} key={item?.title}
                     href={item?.href}
                     className=" hover:text-sky-600 relative group flex items-center gap-2"
-                    
                   >
                     <span className=" w-2.5 h-2.5  rounded-full border border-white/80 inline-flex  group-hover:border-sky-600" />
                     {item?.title}
