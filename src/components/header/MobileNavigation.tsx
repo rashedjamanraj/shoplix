@@ -6,6 +6,7 @@ import { Dialog, DialogPanel } from "@headlessui/react";
 import { MdClose } from "react-icons/md";
 import Link from "next/link";
 import { navigation } from "@/constants";
+import SocialLinks from "../SocialLinks";
 
 const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -54,6 +55,7 @@ const MobileNavigation = () => {
                   </Link>
                 ))}
               </div>
+              <SocialLinks />
             </DialogPanel>
           </div>
         </Dialog>
