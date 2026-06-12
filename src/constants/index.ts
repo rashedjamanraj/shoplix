@@ -1,5 +1,7 @@
 // constants/index.ts
- 
+import bannerImageOne from "@/assets/bannerImageSplix.png"; 
+
+
 export const navigation = [
    {title:"Home", href:"/"},
    {title:"Products", href:"/products"},
@@ -8,3 +10,13 @@ export const navigation = [
    {title:"Blog", href:"/blog"},
    {title:"Contact", href:"/contact"},
 ]
+
+export const banner = {
+  priceText: "Starting at $999.90",
+  title: "The best tablet Collection 2026",
+  textOne: "Exclusive offer",
+  offerPrice: "-30%",
+  textTwo: "off this week",
+  buttonLink: "/products",
+  image: bannerImageOne,
+};

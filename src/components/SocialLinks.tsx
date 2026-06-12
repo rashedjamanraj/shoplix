@@ -10,7 +10,6 @@ const linksData = [
   { icon: <FaLinkedin />, href: "https://www.linkedin.com/in/rashedjamanraj"},
   { icon: <FaX />, href: "https://x.com/RashedJamanRaj"},
   { icon: <FaInstagram />, href: "https://www.instagram.com/rashedjamanraj"},
-
 ];
 
 const SocialLinks = () => {
