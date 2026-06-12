@@ -1,13 +1,22 @@
-import React from 'react'
+import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
 
 
-const Button = ({children, className}) => {
+
+interface Props {
+  children : React.ReactNode;
+  className?: string;
+  href?: string;
+}
+
+const Button = ({children, className, href}: Props) => {
   return (
     <>
-
-    <button className={twMerge(' bg-cyan-600 text-white py-2 px-6 hover:bg-cyan-700 cursor-pointer duration-200', className)}>{children}</button>
+    {<Link href="/products"
+      className={twMerge(' bg-cyan-600 text-white py-2 px-6 hover:bg-cyan-700 cursor-pointer duration-200', className)}>{children}
+    </Link>} 
+    
     </>
   )
 }
