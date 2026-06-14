@@ -7,7 +7,7 @@ import { IoIosArrowRoundBack } from "react-icons/io";
 const NotFound = () => {
   return (
     <div className="max-w-7xl  mx-auto ">
-      <Container className="flex flex-col items-center justify-center text-center ">
+      <Container className="flex flex-col items-center justify-center text-center mt-5 ">
         <Image
           src="/images/notFoundPage.png"
           width={400}

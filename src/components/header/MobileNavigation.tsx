@@ -7,20 +7,59 @@ import { MdClose } from "react-icons/md";
 import Link from "next/link";
 import { navigation } from "@/constants";
 import SocialLinks from "../SocialLinks";
+import { HiX } from "react-icons/hi";
+import { IoSearch } from "react-icons/io5";
+
+
 
 const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+   const [searchOpen, setSearchOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   
 
   return (
     <>
+
+
+    <div className="md:hidden flex justify-end flex-1">
+      {!searchOpen ? (
+        <button
+          className="flex justify-center items-center w-7 h-7 rounded-full bg-sky-600 text-white cursor-pointer"
+          onClick={() => setSearchOpen(true)}
+        >
+          <IoSearch className="text-xl" />
+        </button>
+      ) : (
+        <div className="flex items-center justify-start p-1 rounded-full border border-sky-600 max-w-48 w-full">
+          <input
+            type="text"
+            placeholder="search..."
+            autoComplete="off"
+            className="bg-transparent h-[4vh] p-2 focus:outline-none rounded-full text-sm"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <button
+            className="flex justify-center items-center w-6 h-6 rounded-full bg-gray-500 hover:bg-rose-700 text-white cursor-pointer -ml-6"
+            onClick={() => setSearchOpen(false)}
+          >
+            <HiX className="text-lg" />
+          </button>
+        </div>
+      )}
+    </div>
+
+
       <div
         onClick={() => setIsOpen(true)}
-        className=" text-2xl text-gray-500 md:hidden hover:text-sky-600 duration-200 cursor-pointer"
+        className=" text-3xl text-gray-500 md:hidden hover:text-sky-600 duration-200 cursor-pointer"
       >
         <RiMenu3Fill  />
       </div>
+
+      
+
         <Dialog
           open={isOpen}
           as="div"
