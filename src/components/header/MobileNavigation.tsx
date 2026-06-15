@@ -35,7 +35,8 @@ const MobileNavigation = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            {/* Close button fixed at right side */}
+            
+            
             <button
               className="absolute right-1 flex justify-center items-center w-5 h-5 rounded-full bg-gray-500 hover:bg-rose-700 text-white cursor-pointer transition-transform duration-300 ease-in-out"
               onClick={() => setSearchOpen(false)}
