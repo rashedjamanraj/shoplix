@@ -1,5 +1,6 @@
 // constants/index.ts
 import bannerImageOne from "@/assets/bannerImageSplix.png"; 
+import paymentCardLogo from "@/assets/paymentCardLogo.png";
 
 
 export const navigation = [
@@ -20,3 +21,6 @@ export const banner = {
   buttonLink: "/products",
   image: bannerImageOne,
 };
+
+
+export { paymentCardLogo};

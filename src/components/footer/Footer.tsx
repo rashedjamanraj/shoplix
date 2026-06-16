@@ -8,6 +8,7 @@ import Title from "../Title";
 import { navigation } from "@/constants";
 import { MdOutlineEmail } from "react-icons/md";
 import { IoLocationOutline } from "react-icons/io5";
+import { paymentCardLogo } from "@/constants";
 
 const Footer = () => {
   return (
@@ -52,8 +53,12 @@ const Footer = () => {
         <div className=" space-y-1">
           <Title>Informatin</Title>
           <div className=" space-y-2">
-            <p className="hover:text-sky-600 cursor-pointer">Our Awesome Proucts</p>
-            <p className="hover:text-sky-600 cursor-pointer">Our Company Details </p>
+            <p className="hover:text-sky-600 cursor-pointer">
+              Our Awesome Proucts
+            </p>
+            <p className="hover:text-sky-600 cursor-pointer">
+              Our Company Details{" "}
+            </p>
             <p className="hover:text-sky-600 cursor-pointer">Privacy Policy</p>
             <p className="hover:text-sky-600 cursor-pointer">products About</p>
             <p className="hover:text-sky-600 cursor-pointer">Our Members</p>
@@ -62,12 +67,12 @@ const Footer = () => {
           </div>
         </div>
 
-
-
         <div className="left-0 text-left space-y-1 ">
           <Title>Talk To Us</Title>
           <p>Got Questions? Call Us</p>
-          <p className="font-semibold hover:text-sky-600 cursor-pointer">+88 09111365247</p>
+          <p className="font-semibold hover:text-sky-600 cursor-pointer">
+            +88 09111365247
+          </p>
 
           <div className="flex gap-1 items-center justify-start hover:text-sky-600 cursor-pointer">
             <MdOutlineEmail />
@@ -79,10 +84,33 @@ const Footer = () => {
             <span>Dhaka, Bangladesh</span>
           </div>
         </div>
-
-
-
       </Container>
+      <div className="mt-8 sm:mt-4 px-5 gap-2 md:gap-4 md:px-20 md:flex justify-between items-center  ">
+        <p className="text-sm">
+          {" "}
+          Copyright &copy; {new Date().getFullYear()}{" "}
+          <Link href="/" className=" text-blue-600 hover:text-red-400">
+            Shoplix
+          </Link>{" "}
+          All rights reserved{" "}
+        </p>
+
+        <Image
+          src={paymentCardLogo}
+          alt="Payment Cart"
+          className=" justify-center h-20 w-70 rounded-lg"
+        />
+
+        <div>
+          <p>
+            {" "}
+            Developed By{" "}
+            <span className=" font-semibold font-mono text-sky-600">
+              Rashed Jaman Raj
+            </span>{" "}
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
