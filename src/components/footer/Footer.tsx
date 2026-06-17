@@ -51,7 +51,7 @@ const Footer = () => {
         </div>
 
         <div className=" space-y-1">
-          <Title>Informatin</Title>
+          <Title>Information</Title>
           <div className=" space-y-2">
             <p className="hover:text-sky-600 cursor-pointer">
               Our Awesome Proucts
