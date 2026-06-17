@@ -12,7 +12,7 @@ import { paymentCardLogo } from "@/constants";
 
 const Footer = () => {
   return (
-    <div className="bg-lightBG py-10 lg:py-20 ">
+    <div className="bg-lightBG py-10 lg:py-20  ">
       <Container className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-10">
         <div className="flex flex-col gap-y-5">
           <Link href={"/"}>
@@ -84,8 +84,9 @@ const Footer = () => {
             <span>Dhaka, Bangladesh</span>
           </div>
         </div>
+      </Container>
 
-        <div className="mt-8 sm:mt-4 px-5 gap-2 md:gap-4 md:px-20 md:flex justify-between items-center  ">
+      <div className="mt-8 sm:mt-4 px-5 gap-2 md:gap-4 md:px-20 md:flex justify-between items-center  ">
         <p className="text-sm">
           {" "}
           Copyright &copy; {new Date().getFullYear()}{" "}
@@ -111,7 +112,6 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      </Container>
       
     </div>
   );
