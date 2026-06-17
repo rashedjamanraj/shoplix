@@ -84,8 +84,8 @@ const Footer = () => {
             <span>Dhaka, Bangladesh</span>
           </div>
         </div>
-      </Container>
-      <div className="mt-8 sm:mt-4 px-5 gap-2 md:gap-4 md:px-20 md:flex justify-between items-center  ">
+
+        <div className="mt-8 sm:mt-4 px-5 gap-2 md:gap-4 md:px-20 md:flex justify-between items-center  ">
         <p className="text-sm">
           {" "}
           Copyright &copy; {new Date().getFullYear()}{" "}
@@ -111,6 +111,8 @@ const Footer = () => {
           </p>
         </div>
       </div>
+      </Container>
+      
     </div>
   );
 };
