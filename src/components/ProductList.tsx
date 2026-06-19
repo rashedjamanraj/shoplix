@@ -6,12 +6,11 @@ import { ProductType } from "../../typs";
 
 
 interface Props {
-  products: {
     products: ProductType[];
-  }
+  
 }
 
-const ProductList = ({ products }: Props) => {
+const ProductList = ({ products  }: Props) => {
   return (
     
       <Container className=" py-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 ">
