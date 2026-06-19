@@ -2,8 +2,11 @@ import Link from "next/link";
 import { ProductType } from "../../typs";
 import Image from "next/image";
 import Sidebar from "./Sidebar";
+import ProductPrice from "./ProductPrice";
+import AddToCartButton from "./AddToCartButton";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
+  
   return (
     <div className=" border border-gray-400 hover:shadow-lg hover:shadow-black/30 duration-200 rounded-md group overflow-hidden relative">
       {/* image */}
@@ -21,10 +24,13 @@ const ProductCard = ({ product }: { product: ProductType }) => {
 
       {/* description */}
       <div className=" border-t border-t-gray-100 py-2 px-4 flex flex-col justify-between h-40">
-        
+        <div>
+          <p className="text-sm font-medium text-gray-500 capitalize">{product?.category}</p>
+        <h2 className="font-semibold text-base line-clamp-2">{product?.title}</h2>
+        <ProductPrice product={product} />
+        </div>
+        <AddToCartButton />    
       </div>
-
-
     </div>
   );
 };

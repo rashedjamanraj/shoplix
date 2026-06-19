@@ -13,7 +13,7 @@ export const navigation = [
 ]
 
 export const banner = {
-  priceText: "Starting at $999.90",
+  priceText: "Starting at $0.98",
   title: "The best tablet Collection 2026",
   textOne: "Exclusive offer",
   offerPrice: "-30%",
