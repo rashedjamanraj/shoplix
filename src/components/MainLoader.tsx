@@ -15,8 +15,8 @@ const MainLoader = () => {
         />
       </div>
 
-      <span className="w-14 h-14 inline-flex border-8 border-gray-50 rounded-full relative">
-        <span className="w-14 h-14 border-8 border-r-sky-600  border-b-gray-50 border-t-gray-50 border-l-gray-50 rounded-full absolute -top-2 -left-2 animate-spin" />
+      <span className="w-14 h-14 inline-flex border-8 border-gray-100 rounded-full relative">
+        <span className="w-14 h-14 border-8 border-r-sky-600  border-b-gray-100 border-t-gray-100 border-l-gray-100 rounded-full absolute -top-2 -left-2 animate-spin" />
       </span>
       <p className="mt-4 text-lg text-center font-semibold tracking-wide text-sky-600">
         Loading...

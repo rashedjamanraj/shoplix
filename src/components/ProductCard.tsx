@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ProductType } from "../../typs";
 import Image from "next/image";
+import Sidebar from "./Sidebar";
 
 const ProductCard = ({ product }: { product: ProductType }) => {
   return (
@@ -15,6 +16,15 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         />
         <p className=" absolute top-2 right-2 text-white bg-orange-500 py-1 px-2 text-xs rounded-lg">{product?.discountPercentage}%</p>
       </Link>
+      {/* sidebar */}
+      <Sidebar />
+
+      {/* description */}
+      <div className=" border-t border-t-gray-100 py-2 px-4 flex flex-col justify-between h-40">
+        
+      </div>
+
+
     </div>
   );
 };
