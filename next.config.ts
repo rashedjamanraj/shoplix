@@ -19,6 +19,11 @@ const nextConfig: NextConfig = {
       protocol: "https",
       hostname: "i.ibb.co.com", 
     },
+
+    {
+        protocol: "https",
+        hostname: "i.dummyjson.com", 
+      },
   ],
 }
 

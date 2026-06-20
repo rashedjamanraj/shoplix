@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar";
 import ProductPrice from "./ProductPrice";
 import AddToCartButton from "./AddToCartButton";
 
+
 const ProductCard = ({ product }: { product: ProductType }) => {
   
   return (
