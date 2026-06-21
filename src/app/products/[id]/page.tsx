@@ -4,6 +4,8 @@ import { getData } from '@/helpers';
 import { ProductType } from '../../../../typs';
 import ProductPrice from '@/components/ProductPrice';
 import { MdStar } from 'react-icons/md';
+import { FaRegEye } from 'react-icons/fa';
+import PriceFormate from '@/components/PriceFormate';
 
 interface Props {
   params: Promise <{
@@ -51,6 +53,14 @@ const SingleProductPage = async({params}: Props) => {
             <p className=' text-base font-semibold'>{`(${product?.rating?.toFixed(1)}) reviews`}</p>
             </div>
           </div>
+          <p className='flex items-center'>
+              <FaRegEye className='mr-1' />{" "}
+              <span className='font-semibold mr-1'>300+</span>
+              Peoples are viewing this right now
+          </p>
+          <p>You are saving{" "} 
+            <PriceFormate amount={product?.price * product?.discountPercentage / 100} /> 
+          </p>
         </div>
         {/* product reviews */}
     </Container>
