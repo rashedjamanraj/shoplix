@@ -24,7 +24,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         <p className=" absolute top-2 right-2 text-white bg-orange-500 py-1 px-2 text-xs rounded-lg">{product?.discountPercentage}%</p>
       </Link>
       {/* sidebar */}
-      <Sidebar />
+      <Sidebar product={product} />
 
       {/* description */}
       <div className=" border-t border-t-gray-100 py-2 px-4 flex flex-col justify-between h-40">
