@@ -1,27 +1,28 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { StateType } from '../../../typs'
-import Button from '../Button';
+import React from "react";
+import { ProductType } from "../../../typs";
+import Link from "next/link";
+import Image from "next/image";
 
-
-const CartProduct = () => {
-  const {cart} = useSelector((state: StateType) => state?.shoplix);
-
+const CartProduct = ({ product }: { product: ProductType }) => {
   return (
-    <div>
-      { cart?.length > 0 ? <div> <p>product</p> </div> : (
-        <div className=' bg-white h-96 my-10 flex flex-col gap-4 items-center justify-center py-5 rounded-lg border border-gray-200 drop-shadow-2xl'>
-          <h1 className=' text-3xl font-bold tracking-tight text-taupe-900 sm:text-4xl'>
-            Shopping Cart
-          </h1>
-          <p className=' text-base max-w-115 text-center text-gray-600 tracking-wide leading-6'>
-            Your cart is empty. Visit our site's product page to shop for your essentials from our vast collection of awesome products. Visit our shopping page.
-          </p>
-          <Button href='/' className=' rounded-md font-semibold bg-sky-600 hover:bg-amber-700'>Go to Shopping</Button>
-        </div>
-      )}
+    <div className="flex py-6 sm:py-10">
+      <Link
+        href={{
+          pathname: `/products/${product?.id}`,
+          query: { id: product?.id },
+        }}
+        className="h-24 w-24 sm:h-48 sm:w-48 border border-sky-300 hover:border-sky-400 overflow-hidden flex items-center justify-center rounded-md"
+      >
+        <Image
+          src={product?.images[0]}
+          alt="productImage"
+          width={300}
+          height={300}
+          className="h-full w-full p-2 rounded-md object-contain bg-[#f7f7f7] hover:scale-110 duration-200"
+        />
+      </Link>
     </div>
-  )
-}
+  );
+};
 
-export default CartProduct
+export default CartProduct;
