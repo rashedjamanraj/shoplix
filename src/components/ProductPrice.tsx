@@ -27,8 +27,6 @@ const ProductPrice = ({ product }: { product: ProductType }) => {
         className=" text-gray-500 line-through font-normal"
       /> 
       <PriceFormate amount={existingProduct ? discountedPrice * existingProduct?.quantity! : discountedPrice} className=" font-semibold text-sky-600" />
-
-     
     </div>
   );
 };
