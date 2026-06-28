@@ -23,10 +23,10 @@ const ProductPrice = ({ product }: { product: ProductType }) => {
   return (
     <div className="flex items-center gap-2">
       <PriceFormate
-        amount={existingProduct ? discountedPrice * existingProduct?.quantity! : discountedPrice}
+        amount={existingProduct ? regularPrice * existingProduct?.quantity! : regularPrice}
         className=" text-gray-500 line-through font-normal"
       /> 
-      <PriceFormate amount={discountedPrice}className=" font-semibold text-sky-600" />
+      <PriceFormate amount={existingProduct ? discountedPrice * existingProduct?.quantity! : discountedPrice} className=" font-semibold text-sky-600" />
 
      
     </div>
