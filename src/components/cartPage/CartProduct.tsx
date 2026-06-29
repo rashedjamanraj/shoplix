@@ -1,16 +1,31 @@
-import React from "react";
-import { ProductType } from "../../../typs";
+import React, { useEffect, useState } from "react";
+import { ProductType, StateType } from "../../../typs";
 import Link from "next/link";
 import Image from "next/image";
 import PriceFormate from "../PriceFormate";
 import AddToCartButton from "../AddToCartButton";
 import { IoClose } from "react-icons/io5";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "@/redux/shoplixSlice";
 import toast from "react-hot-toast";
 import { FaCheck } from "react-icons/fa";
 
 const CartProduct = ({ product }: { product: ProductType }) => {
+  const { cart } = useSelector((state: StateType) => state?.shoplix);
+  const [existingProduct, setExistingProduct] = useState<ProductType | null>(
+    null,
+  );
+
+  useEffect(() => {
+      const availableProduct = cart?.find((item) => item?.id === product?.id);
+      if (availableProduct) {
+        setExistingProduct(availableProduct);
+      }
+    }, [cart, product]);
+  
+    const regularPrice = product?.price;
+    const discountedPrice = product?.price - (product?.price * product?.discountPercentage / 100) ;
+
   const disPatch = useDispatch();
   const handleRemoveProduct = () => {
     disPatch(removeFromCart(product?.id));
@@ -34,7 +49,7 @@ const CartProduct = ({ product }: { product: ProductType }) => {
           className="h-full w-full p-2 rounded-md object-contain bg-[#f7f7f7] hover:scale-110 duration-200"
         />
       </Link>
-      {/* Deatials */}
+      {/* Details */}
       <div className=" ml-4 sm:ml-6 flex flex-1 flex-col justify-between">
         <div className=" relative p-4 sm:grid sm:grid-cols-4 sm:pr-0">
           <div className=" flex flex-col gap-1 col-span-5">
@@ -48,9 +63,14 @@ const CartProduct = ({ product }: { product: ProductType }) => {
               Category:{" "}
               <span className=" font-medium">{product?.category}</span>
             </p>
-            <div className=" flex items-center gap-4">
-              <PriceFormate amount={product?.price * product?.quantity!} /><AddToCartButton product={product} />
-            </div>
+            <div className="flex items-center gap-1">
+      <PriceFormate
+        amount={existingProduct ? regularPrice * existingProduct?.quantity! : regularPrice}
+        className=" text-gray-500 line-through font-normal"
+      /> 
+      <PriceFormate amount={existingProduct ? discountedPrice * existingProduct?.quantity! : discountedPrice} className=" pr-4 font-semibold text-sky-600" />
+      <AddToCartButton product={product} />
+    </div>
             
           </div>
           <div className=" sm:mt-0 sm:pr-9">
