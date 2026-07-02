@@ -33,13 +33,13 @@ const CartProduct = ({ product }: { product: ProductType }) => {
   };
 
   return (
-    <div className="flex py-6 sm:py-10">
+    <div className="flex py-4 md:py-6 sm:py-10">
       <Link
         href={{
           pathname: `/products/${product?.id}`,
           query: { id: product?.id },
         }}
-        className="h-24 w-24 sm:h-48 sm:w-48 border border-sky-300 hover:border-sky-400 overflow-hidden flex items-center justify-center rounded-md"
+        className="h-24 w-24 sm:h-32 sm:w-32 border border-sky-300 hover:border-sky-400 overflow-hidden flex items-center justify-center rounded-md"
       >
         <Image
           src={product?.images[0]}
@@ -77,7 +77,7 @@ const CartProduct = ({ product }: { product: ProductType }) => {
             <div className=" absolute right-0 top-0">
               <button
                 onClick={handleRemoveProduct}
-                className=" p-2 text-gray-600 rounded-md bg-gray-50 text-xl hover:bg-gray-100 hover:text-red-500 cursor-pointer"
+                className=" p-1 text-gray-600 rounded-md bg-gray-50 text-xl hover:bg-gray-100 hover:text-red-500 cursor-pointer"
               >
                 <IoClose />
               </button>

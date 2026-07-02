@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { RiMenu3Fill } from "react-icons/ri";
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { MdClose } from "react-icons/md";
@@ -14,19 +14,57 @@ const MobileNavigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Close search when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setSearchOpen(false);
+      }
+    }
+    if (searchOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [searchOpen]);
 
   return (
     <>
-      <div className="md:hidden flex justify-end flex-1">
-        {!searchOpen ? (
+      <div >
+      {/* Header row */}
+      <div className="md:hidden flex items-center justify-between px-3 py-2 bg-white ">
+        
+        {/* Search icon */}
+        {!searchOpen && (
           <button
-            className="flex justify-center items-center w-7 h-7 rounded-full bg-sky-600 text-white cursor-pointer transition-transform duration-300 ease-in-out"
+            className="ml-3 flex justify-center items-center w-7 h-7 rounded-full bg-sky-600 text-white cursor-pointer"
             onClick={() => setSearchOpen(true)}
           >
             <IoSearch className="text-xl" />
           </button>
-        ) : (
-          <div className="flex items-center p-1 rounded-full border relative border-sky-600 max-w-48 w-full transition-all duration-300 ease-in-out">
+        )}
+
+        {/* Right: Menu icon */}
+        <div
+          onClick={() => setIsOpen(true)}
+          className="text-3xl text-gray-500 hover:text-sky-600 duration-200 cursor-pointer ml-auto"
+        >
+          <RiMenu3Fill />
+        </div>
+      </div>
+
+      {/* Search bar below header */}
+      {searchOpen && (
+        <div
+          ref={searchRef}
+          className="absolute top-full left-25 -mt-10 bg-white rounded-full transition-all duration-300 ease-in-out"
+        >
+          <div className="flex items-center  p-1 border border-sky-600 rounded-full  mt-2">
             <input
               type="text"
               placeholder="search..."
@@ -35,24 +73,17 @@ const MobileNavigation = () => {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            
-            
             <button
-              className="absolute right-1 flex justify-center items-center w-5 h-5 rounded-full bg-gray-500 hover:bg-rose-700 text-white cursor-pointer transition-transform duration-300 ease-in-out"
+              className="flex justify-center items-center w-6 h-6 rounded-full bg-gray-500 hover:bg-rose-700 text-white cursor-pointer ml-2"
               onClick={() => setSearchOpen(false)}
             >
               <HiX className="text-sm" />
             </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
-      <div
-        onClick={() => setIsOpen(true)}
-        className=" text-3xl text-gray-500 md:hidden hover:text-sky-600 duration-200 cursor-pointer"
-      >
-        <RiMenu3Fill />
-      </div>
+    
 
       <Dialog
         open={isOpen}
@@ -92,6 +123,7 @@ const MobileNavigation = () => {
           </DialogPanel>
         </div>
       </Dialog>
+      </div>
     </>
   );
 };
