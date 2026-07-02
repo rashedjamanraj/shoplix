@@ -47,7 +47,7 @@ const CartSummary = ({cart} : Props) => {
         </div>
         <div className=' flex items-center justify-between'>
           <Title className=' text-lg font-medium'>
-            Payable Amount
+            Payable Amount 
           </Title>
           <PriceFormate amount={totalAmount - discountAmount} className=' text-lg font-bold'/>
         </div>
