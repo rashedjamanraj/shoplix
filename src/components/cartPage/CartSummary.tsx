@@ -17,8 +17,11 @@ const CartSummary = ({cart} : Props) => {
     let amount = 0;
     let discount = 0;
     cart?.map((item) => {
-      amount += item?.price * item?.quantity!;
-      discount += ((item?.price * item?.quantity!) / 100) * item?.quantity!;
+       const itemTotal = item?.price * item?.quantity!;
+        const itemDiscount =
+        (item?.price * item?.discountPercentage) / 100 * item?.quantity!;
+      amount += itemTotal;
+      discount += itemDiscount;
     });
     setTotalAmount(amount);
     setDiscountAmount(discount);
