@@ -102,7 +102,7 @@ const MobileNavigation = () => {
     <>
       <div>
         {/* Header row */}
-        <div className="md:hidden flex items-center justify-between px-3 py-2 bg-white ">
+        <div className="md:hidden flex items-center justify-between px-3 py-2 gap-2 bg-white ">
           {/* Search icon */}
           {!searchOpen && (
             <button
@@ -116,7 +116,7 @@ const MobileNavigation = () => {
           {/* Right: Menu icon */}
           <div
             onClick={() => setIsOpen(true)}
-            className="text-3xl text-gray-500 hover:text-sky-600 duration-200 cursor-pointer ml-auto"
+            className="text-3xl  text-gray-500 hover:text-sky-600 duration-200 cursor-pointer ml-auto"
           >
             <RiMenu3Fill />
           </div>
