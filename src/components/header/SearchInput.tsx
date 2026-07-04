@@ -15,6 +15,7 @@ const SearchInput = () => {
 
   const wrapperRef = useRef<HTMLDivElement>(null);
 
+  // fetch products
   useEffect(() => {
     const getProducts = async () => {
       const endpoint = "https://dummyjson.com/products";
@@ -28,29 +29,46 @@ const SearchInput = () => {
     getProducts();
   }, []);
 
+  // load saved search term (only text, not dropdown)
   useEffect(() => {
-    const filtered = Products?.filter((item: ProductType) =>
-      item?.title.toLowerCase().includes(search.toLowerCase())
-    );
-    setFilteredProducts(filtered);
-    setOpenDropdown(search.length > 0);
-    setSelectedIndex(-1); 
+    const savedSearch = localStorage.getItem("searchTerm");
+    if (savedSearch) {
+      setSearch(savedSearch);
+    }
+  }, []);
+
+  // filter products when typing
+  useEffect(() => {
+    if (search.trim().length > 0 && Products.length > 0) {
+      const filtered = Products.filter((item: ProductType) =>
+        item?.title.toLowerCase().includes(search.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+
+      // save to localStorage
+      localStorage.setItem("searchTerm", search);
+    } else {
+      setFilteredProducts([]);
+    }
   }, [search, Products]);
 
+  // handle search button click
   const handleSearch = () => {
     if (!search) return;
-    const filtered = Products?.filter((item: ProductType) =>
+    const filtered = Products.filter((item: ProductType) =>
       item?.title.toLowerCase().includes(search.toLowerCase())
     );
     setFilteredProducts(filtered);
     setOpenDropdown(true);
-    setSearch(""); 
+
+    // save to localStorage
+    localStorage.setItem("searchTerm", search);
   };
 
-
+  // close when clicking outside
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
         setOpenDropdown(false);
       }
     };
@@ -60,12 +78,12 @@ const SearchInput = () => {
     };
   }, []);
 
+  // keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") {
       if (selectedIndex >= 0 && filteredProducts[selectedIndex]) {
         window.location.href = `/products/${filteredProducts[selectedIndex].id}`;
         setOpenDropdown(false);
-        setSearch("");
       } else {
         handleSearch();
       }
@@ -74,6 +92,7 @@ const SearchInput = () => {
       setSelectedIndex((prev) =>
         prev < filteredProducts.length - 1 ? prev + 1 : prev
       );
+      setOpenDropdown(true);
     }
     if (e.key === "ArrowUp") {
       setSelectedIndex((prev) => (prev > 0 ? prev - 1 : prev));
@@ -87,14 +106,24 @@ const SearchInput = () => {
         placeholder="Search Product Here..."
         className="w-full h-full border border-sky-600 px-4 outline-none"
         value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={(e) => {
+          setSearch(e.target.value);
+          setOpenDropdown(true);
+        }}
         onKeyDown={handleKeyDown}
+        onFocus={() => {
+          if (search.trim().length > 0 && filteredProducts.length > 0) {
+            setOpenDropdown(true);
+          }
+        }}
       />
       {search && (
         <RiCloseLine
           onClick={() => {
             setSearch("");
             setOpenDropdown(false);
+            setFilteredProducts([]);
+            localStorage.removeItem("searchTerm");
           }}
           className="text-xl absolute top-2.5 right-12 text-gray-500 hover:text-red-500 cursor-pointer duration-200"
         />
@@ -106,46 +135,57 @@ const SearchInput = () => {
         <RiSearchLine />
       </span>
 
-      {openDropdown && filteredProducts.length > 0 && (
+      {openDropdown && (
         <div className="absolute left-0 top-12 w-full mx-auto h-auto max-h-96 bg-white rounded-md overflow-y-scroll cursor-pointer text-black shadow-md">
-          {filteredProducts.map((item: ProductType, index: number) => {
-            const regularPrice = item?.price;
-            const discountedPrice =
-              item?.price - (item?.price * item?.discountPercentage) / 100;
+          {filteredProducts?.length > 0 ? (
+            <div>
+              {filteredProducts.map((item: ProductType, index: number) => {
+                const regularPrice = item?.price;
+                const discountedPrice =
+                  item?.price - (item?.price * item?.discountPercentage) / 100;
 
-            return (
-              <Link
-                key={item?.id}
-                href={{
-                  pathname: `/products/${item?.id}`,
-                  query: { id: item?.id },
-                }}
-                onClick={() => setOpenDropdown(false)}
-                className={`flex items-center gap-3 px-3 py-2 
-                  ${index === selectedIndex ? "bg-sky-100 ring-1 ring-sky-200" : "hover:bg-gray-100"}`}
-              >
-                <img
-                  src={item?.thumbnail || item?.images?.[0]}
-                  alt={item?.title}
-                  className="w-12 h-12 object-cover rounded"
-                />
-                <div className="flex flex-col">
-                  <span className="font-medium">{item?.title}</span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500 line-through">
-                      ${regularPrice.toFixed(2)}
-                    </span>
-                    <span className="text-sm font-semibold text-sky-600">
-                      ${discountedPrice.toFixed(2)}
-                    </span>
-                    <span className="text-[10px] bg-rose-500 text-white px-1.5 py-0.5 rounded">
-                            -{item?.discountPercentage}%
-                          </span>
-                  </div>
-                </div>
-              </Link>
-            );
-          })}
+                return (
+                  <Link
+                    key={item?.id}
+                    href={`/products/${item?.id}`}
+                    onClick={() => setOpenDropdown(false)}
+                    className={`flex items-center gap-3 px-3 py-2 
+                      ${index === selectedIndex ? "bg-sky-100 ring-1 ring-sky-200" : "hover:bg-gray-100"}`}
+                  >
+                    <img
+                      src={item?.thumbnail || item?.images?.[0]}
+                      alt={item?.title}
+                      className="w-12 h-12 object-cover rounded"
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-medium">{item?.title}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-500 line-through">
+                          ${regularPrice.toFixed(2)}
+                        </span>
+                        <span className="text-sm font-semibold text-sky-600">
+                          ${discountedPrice.toFixed(2)}
+                        </span>
+                        <span className="text-[10px] bg-rose-500 text-white px-1.5 py-0.5 rounded">
+                          -{item?.discountPercentage}%
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="py-10 px-5">
+              <p className="text-base">
+                Nothing matched with{" "}
+                <span className="font-semibold underline underline-offset-2 decoration-1">
+                  {search}
+                </span>{" "}
+                please try again.
+              </p>
+            </div>
+          )}
         </div>
       )}
     </div>

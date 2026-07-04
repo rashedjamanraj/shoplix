@@ -45,7 +45,7 @@ const MobileNavigation = () => {
       setFilteredProducts(filtered);
       setSelectedIndex(-1);
     } else {
-      setFilteredProducts([]);
+      setFilteredProducts([]); 
     }
   }, [searchTerm, products]);
 
@@ -54,8 +54,6 @@ const MobileNavigation = () => {
     function handleClickOutside(event: MouseEvent) {
       if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
         setSearchOpen(false);
-        setSearchTerm("");
-        setFilteredProducts([]);
       }
     }
     if (searchOpen) {
@@ -83,7 +81,6 @@ const MobileNavigation = () => {
         window.location.href = `/products/${filteredProducts[selectedIndex].id}`;
         setSearchOpen(false);
         setSearchTerm("");
-        setFilteredProducts([]);
       } else {
         handleSearch();
       }
@@ -102,7 +99,7 @@ const MobileNavigation = () => {
     <>
       <div>
         {/* Header row */}
-        <div className="md:hidden flex items-center justify-between px-3 py-2 gap-2 bg-white ">
+        <div className="md:hidden flex items-center justify-between px-3 py-2 bg-white ">
           {/* Search icon */}
           {!searchOpen && (
             <button
@@ -116,7 +113,7 @@ const MobileNavigation = () => {
           {/* Right: Menu icon */}
           <div
             onClick={() => setIsOpen(true)}
-            className="text-3xl  text-gray-500 hover:text-sky-600 duration-200 cursor-pointer ml-auto"
+            className="text-3xl text-gray-500 hover:text-sky-600 duration-200 cursor-pointer ml-auto"
           >
             <RiMenu3Fill />
           </div>
@@ -140,11 +137,7 @@ const MobileNavigation = () => {
               />
               <button
                 className="flex justify-center items-center w-6 h-6 rounded-full bg-gray-500 hover:bg-rose-700 text-white cursor-pointer ml-2"
-                onClick={() => {
-                  setSearchOpen(false);
-                  setSearchTerm("");
-                  setFilteredProducts([]);
-                }}
+                onClick={() => setSearchOpen(false)}
               >
                 <HiX className="text-sm" />
               </button>
@@ -162,11 +155,7 @@ const MobileNavigation = () => {
                     <Link
                       key={item?.id}
                       href={`/products/${item?.id}`}
-                      onClick={() => {
-                        setSearchOpen(false);
-                        setSearchTerm("");
-                        setFilteredProducts([]);
-                      }}
+                      onClick={() => setSearchOpen(false)}
                       className={`flex items-center gap-3 px-3 py-2 hover:bg-gray-100 ${
                         index === selectedIndex ? "bg-sky-100 ring-1 ring-sky-200" : ""
                       }`}
