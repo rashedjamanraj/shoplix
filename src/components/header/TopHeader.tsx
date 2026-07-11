@@ -7,6 +7,7 @@ import Link from 'next/link'
 import { LiaUser } from 'react-icons/lia'
 import HeaderIcon from './HeaderIcon'
 import MobileNavigation from './MobileNavigation'
+import SingINButton from './SingINButton'
 
 
 const TopHeader = () => {
@@ -19,15 +20,7 @@ const TopHeader = () => {
       
       <SearchInput />
       <div className=' hidden md:inline-flex items-center gap-3'>
-        <Link href={"/signin"} className='flex items-center gap-2 text-sm '>
-        <div className='border border-gray-300 p-1.5 rounded-full text-xl'>
-          <LiaUser />
-        </div>
-        <div>
-          <p className='text-xs'>Hello, Guest</p>
-          <p className='font-medium'>Login / Register</p>
-        </div>
-        </Link>
+        <SingINButton />
         <HeaderIcon />
       </div>
       <MobileNavigation />
