@@ -26,7 +26,7 @@ const SingINButton = () => {
           </div>
           <div>
             <p className="text-xs">{session?.user?.name}</p>
-            <p className="font-medium">Logout</p>
+            <p className="font-medium">Signout</p>
           </div>
         </div>
       ) : (
@@ -39,7 +39,7 @@ const SingINButton = () => {
           </div>
           <div>
             <p className="text-xs">Hello, Guest</p>
-            <p className="font-medium">Login / Register</p>
+            <p className="font-medium">Signin / Register</p>
           </div>
         </div>
       )}
