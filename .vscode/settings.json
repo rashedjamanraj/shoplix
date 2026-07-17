@@ -1,10 +1,12 @@
 {
   "files.autoSave": "afterDelay",
   "cSpell.words": [
+    "NEXTAUTH",
     "persistor",
     "Shoplix",
     "singin",
     "typs"
   ],
-  "editor.guides.bracketPairs": "active"
+  "editor.guides.bracketPairs": "active",
+  "notebook.lineNumbers": "on"
 }

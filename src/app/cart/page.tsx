@@ -13,6 +13,7 @@ const CartPage = async() => {
   if(!session?.user){
     redirect("/");
   }
+
   return (
     <div className=' px-4 md:px-20  py-10'>
       <CartProducts />

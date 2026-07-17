@@ -18,7 +18,7 @@ const ProductCard = ({ product }: { product: ProductType }) => {
         <Image src={product?.images[0]} alt="Product-Image" 
         width={500}
         height={500}
-        priority={true}
+        priority={true} 
         className=" w-full h-64 object-contain hover:scale-110 duration-300"
         />
         <p className=" absolute top-2 right-2 text-white bg-orange-500 py-1 px-2 text-xs rounded-lg">{product?.discountPercentage}%</p>

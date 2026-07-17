@@ -7,6 +7,7 @@ import Signout from '../Signout'
 
 const BottomHeader = async() => {
   const session = await getServerSession();
+  
 
   return (
     <div className=' border-b border-b-gray-400'>

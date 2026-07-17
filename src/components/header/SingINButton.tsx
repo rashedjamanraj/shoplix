@@ -6,7 +6,7 @@ import { LiaUser } from "react-icons/lia";
 
 const SingINButton = () => {
   const { data: session } = useSession();
-  console.log(session);
+  
 
   return (
     <>

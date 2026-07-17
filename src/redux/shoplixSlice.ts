@@ -63,6 +63,12 @@ export const shoplixSlice = createSlice({
         state.favorite.push(action.payload);
       }
     },
+
+    removeFromFavorites: (state, action) => {
+      state.favorite = state.favorite.filter(
+        (item) => item?.id !== action.payload
+      );
+    },
     resetFavorite: (state) => {
       state.favorite = [];
     },
@@ -70,6 +76,8 @@ export const shoplixSlice = createSlice({
   },
 });
 
-export const { addToCart, increaseQuantity, decreaseQuantity, removeFromCart, resetCart, addToFavorite, resetFavorite } =
+
+
+export const { addToCart, increaseQuantity, decreaseQuantity, removeFromCart, resetCart, addToFavorite, removeFromFavorites, resetFavorite } =
   shoplixSlice.actions;
 export default shoplixSlice.reducer;
